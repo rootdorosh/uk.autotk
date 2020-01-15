@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+eval '/opt/php74/bin/php artisan view:clear && /opt/php74/bin/php artisan cache:clear &&  /opt/php74/bin/php artisan config:cache && /opt/php74/bin/php artisan core:clear && /opt/php74/bin/php artisan migrate && /opt/php74/bin/php artisan db:seed --class=SyncSeeder'
