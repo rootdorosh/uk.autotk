@@ -165,7 +165,7 @@ class ModuleGeneratorService
         
             //LANG
             $this->putFile(
-                'Resources/Lang/en/' . strtolower(Str::snake($modelConfig['name'])), 
+                'Resources/lang/en/' . strtolower(Str::snake($modelConfig['name'])), 
                 view()->file($this->getViewBasePath() . 'resources/lang_model.blade.php', $viewData)->render()
             );
         }

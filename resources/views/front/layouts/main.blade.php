@@ -19,8 +19,8 @@
         </header>
         <nav>
             <ul class="menu-list">
-                <li class="is-active"><a href="{{ route('home') }}">{{ t('all.cars') }}</a></li>
-                <!--<li><a href="{{ route('wheels') }}">{{ t('wheels') }}</a></li>-->
+                <li class="is-active"><a href="{{ r('home') }}">{{ t('all.cars') }}</a></li>
+                <!--<li><a href="{{ r('wheels') }}">{{ t('wheels') }}</a></li>-->
             </ul>
         </nav>
         

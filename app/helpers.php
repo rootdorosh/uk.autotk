@@ -31,6 +31,16 @@ if (! function_exists('l')) {
     }
 }
 
+if (! function_exists('r')) {
+    /*
+     * @return string
+     */
+    function r($name, $parameters = [], $absolute = true)
+    {
+        return route($name, $parameters, $absolute) . '/';
+    }
+}
+
 
 if (! function_exists('t')) {
     /*

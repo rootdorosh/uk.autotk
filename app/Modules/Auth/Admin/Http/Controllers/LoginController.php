@@ -28,7 +28,7 @@ class LoginController extends AdminController
     {
         if ($this->guard()->attempt(['email' => $request->email, 'password' => $request->password])) {
             
-            return redirect(route('admin.dashboard'));
+            return redirect(r('admin.dashboard'));
             //return redirect()->intended($this->redirectPath());
         } else {
             return back()->with('error', __('auth::login_form.invalid_credentials'));
@@ -42,7 +42,7 @@ class LoginController extends AdminController
     {
         $this->guard()->logout();
         
-        return redirect(route('admin.auth.login.form'));
+        return redirect(r('admin.auth.login.form'));
     }
     
     /*

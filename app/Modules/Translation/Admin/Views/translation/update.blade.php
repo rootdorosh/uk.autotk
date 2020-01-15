@@ -18,7 +18,7 @@
         @endif
         
         @include('Translation.admin::translation._form', [
-            'action' => route('admin.translation.translations.update', [$translation->id]),
+            'action' => r('admin.translation.translations.update', [$translation->id]),
         ])
     </div>    
 </div>    

@@ -67,7 +67,7 @@ class PageController extends AdminController
     {
         $page = $this->crudService->store($request->validated());
         
-        return redirect(route('admin.core.pages.index'))
+        return redirect(r('admin.core.pages.index'))
             ->with('success', __('core::page.success.created'));       
     }
 
@@ -92,7 +92,7 @@ class PageController extends AdminController
     {
         $page = $this->crudService->update($page, $request->validated());
         
-        return redirect(route('admin.core.pages.index')) 
+        return redirect(r('admin.core.pages.index')) 
             ->with('success', __('core::page.success.updated'));       
     }
 

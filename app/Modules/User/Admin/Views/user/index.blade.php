@@ -8,7 +8,7 @@
     <div class="card-header">
         <h3 class="card-title float-sm-left">{{ __('user::user.title.index') }}</h3>
         @if (allow('user.user.store'))
-        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ route("admin.user.users.create") }}">{{ __('app.add') }}</a>      
+        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ r("admin.user.users.create") }}">{{ __('app.add') }}</a>      
         @endif
     </div>
     <div class="card-body">
@@ -22,7 +22,7 @@
 $(function () {
 
     var tableAgrid = $('#users-grid').aGrid({
-        url: '{{ route("admin.user.users.index") }}',
+        url: '{{ r("admin.user.users.index") }}',
         permissions: {
             update: {{ allow('user.user.update') ? true : false }},
             destroy: {{ allow('user.user.destroy') ? true : false }},
@@ -61,10 +61,10 @@ $(function () {
             dir: 'asc'
         },
         rowActions: aGridExt.defaultRowActions({
-            baseUrl: '{{ route("admin.user.users.index") }}'
+            baseUrl: '{{ r("admin.user.users.index") }}'
         }),    
         bulkActions: aGridExt.defaultBulkActions({
-            baseUrl: '{{ route("admin.user.users.index") }}'
+            baseUrl: '{{ r("admin.user.users.index") }}'
         }),
         theadPanelCols: {
             pager: 'col-sm-4',

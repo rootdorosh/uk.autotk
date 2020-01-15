@@ -8,7 +8,7 @@
     <div class="card-header">
         <h3 class="card-title float-sm-left">{{ __('core::page.title.index') }}</h3>
         @if (allow('core.page.store'))
-        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ route('admin.core.pages.create') }}">{{ __('app.add') }}</a>      
+        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ r('admin.core.pages.create') }}">{{ __('app.add') }}</a>      
         @endif
     </div>
     <div class="card-body">
@@ -22,7 +22,7 @@
 $(function () {
 
     var tableAgrid = $('#pages-grid').aGrid({
-        url: '{{ route("admin.core.pages.index") }}',
+        url: '{{ r("admin.core.pages.index") }}',
         permissions: {
             update: {{ allow('core.page.update') ? true : false }},
             destroy: {{ allow('core.page.destroy') ? true : false }},
@@ -46,7 +46,7 @@ $(function () {
             dir: 'asc'
         },
         rowActions: aGridExt.defaultRowActions({
-            baseUrl: '{{ route("admin.core.pages.index") }}'
+            baseUrl: '{{ r("admin.core.pages.index") }}'
         }),    
         theadPanelCols: {
             pager: 'col-sm-4',

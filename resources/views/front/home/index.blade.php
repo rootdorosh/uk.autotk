@@ -6,7 +6,7 @@
         <h1 class="section-name_2">{{ t('select.the.car.make') }} </h1>
         <ul>
         @foreach ($makes as $index => $make)
-            <li><a href="{{ route('wheels.make', [$make['slug']]) }}">{{ $make['title'] }}</a></li>
+            <li><a href="{{ r('wheels.make', [$make['slug']]) }}">{{ $make['title'] }}</a></li>
             @if (($index + 1) % 7 == 0)
                 </ul><ul>
             @endif            
@@ -65,7 +65,7 @@
         <table>
             <tr>
             @foreach ($mostVisitedModels as $index => $item)    
-                <?php /* {{ route('wheels.make.model', [$item['make_slug'], $item['model_slug']]) }} */ ?>
+                <?php /* {{ r('wheels.make.model', [$item['make_slug'], $item['model_slug']]) }} */ ?>
                 <td>
                     <a href="#">
                         <img src="{{ $item['model_image'] }}" 
@@ -98,7 +98,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <!--<a class="rim" href="{{ route('wheels') }}">{{ t('wheels') }}</a>-->
+                        <!--<a class="rim" href="{{ r('wheels') }}">{{ t('wheels') }}</a>-->
                     </td>						
                 </tr>
             </tbody>

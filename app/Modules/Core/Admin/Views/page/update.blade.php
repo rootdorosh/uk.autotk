@@ -19,7 +19,7 @@
         @endif
             
         @include('Core.admin::page._form', [
-            'action' => route('admin.core.pages.update', [$page->id]),
+            'action' => r('admin.core.pages.update', [$page->id]),
         ])
     </div>    
 </div>    

@@ -8,7 +8,7 @@
     <div class="card-header">
         <h3 class="card-title float-sm-left">{{ __('translation::translation.title.index') }}</h3>
         @if (allow('translation.translation.store'))
-        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ route('admin.translation.translations.create') }}">{{ __('app.add') }}</a>      
+        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ r('admin.translation.translations.create') }}">{{ __('app.add') }}</a>      
         @endif
     </div>
     <div class="card-body">
@@ -22,7 +22,7 @@
 $(function () {
 
     var tableAgrid = $('#translations-grid').aGrid({
-        url: '{{ route("admin.translation.translations.index") }}',
+        url: '{{ r("admin.translation.translations.index") }}',
         permissions: {
             update: {{ allow('translation.translation.update') ? true : false }},
             destroy: {{ allow('translation.translation.destroy') ? true : false }},
@@ -50,7 +50,7 @@ $(function () {
             dir: 'asc'
         },
         rowActions: aGridExt.defaultRowActions({
-            baseUrl: '{{ route("admin.translation.translations.index") }}'
+            baseUrl: '{{ r("admin.translation.translations.index") }}'
         }),    
         theadPanelCols: {
             pager: 'col-sm-4',

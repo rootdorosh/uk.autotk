@@ -67,7 +67,7 @@ class TranslationController extends AdminController
     {
         $translation = $this->crudService->store($request->validated());
         
-        return redirect(route('admin.translation.translations.index'))
+        return redirect(r('admin.translation.translations.index'))
             ->with('success', __('translation::translation.success.created'));       
     }
 
@@ -92,7 +92,7 @@ class TranslationController extends AdminController
     {
         $translation = $this->crudService->update($translation, $request->validated());
         
-        return redirect(route('admin.translation.translations.index')) 
+        return redirect(r('admin.translation.translations.index')) 
             ->with('success', __('translation::translation.success.updated'));       
     }
 

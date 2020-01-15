@@ -67,7 +67,7 @@ class DomainController extends AdminController
     {
         $domain = $this->crudService->store($request->validated());
         
-        return redirect(route('admin.core.domains.index'))
+        return redirect(r('admin.core.domains.index'))
             ->with('success', __('core::domain.success.created'));       
     }
 
@@ -92,7 +92,7 @@ class DomainController extends AdminController
     {
         $domain = $this->crudService->update($domain, $request->validated());
         
-        return redirect(route('admin.core.domains.index')) 
+        return redirect(r('admin.core.domains.index')) 
             ->with('success', __('core::domain.success.updated'));       
     }
 

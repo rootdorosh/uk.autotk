@@ -3,7 +3,7 @@
 return [
     [
         'title' => 'Logout',
-        'route' => route('admin.auth.logout'),
+        'route' => r('admin.auth.logout'),
         'icon' => ' fa-power-off',
         'permission' => 'auth',
         'rank' => 100,

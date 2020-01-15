@@ -10,7 +10,7 @@
     </div>    
     <div class="card-body">    
         @include('<?= $moduleData['name']?>.admin::<?= Str::camel($model['name'])?>._form', [
-            'action' => route('admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.update', [$<?= Str::camel($model['name'])?>->id]),
+            'action' => r('admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.update', [$<?= Str::camel($model['name'])?>->id]),
         ])
     </div>    
 </div>    

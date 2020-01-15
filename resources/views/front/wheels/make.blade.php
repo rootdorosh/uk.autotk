@@ -24,7 +24,7 @@
         
             <ul class="make__vehicle">
             @foreach ($models as $item)    
-            <?php /* {{ route('wheels.make.model', [$make['slug'], $item['slug']]) }} */ ?>
+            <?php /* {{ r('wheels.make.model', [$make['slug'], $item['slug']]) }} */ ?>
             <li>
                 @if (!empty($item['image']))
                 <div class="make__vehicle-image">
@@ -70,7 +70,7 @@
             <tbody>				
                 <tr>
                     <td>
-                        <a class="rim" href="{{ route('wheels.make', [$make['slug']]) }}">{{ t('make.wheels', [$make['title']]) }}</a>
+                        <a class="rim" href="{{ r('wheels.make', [$make['slug']]) }}">{{ t('make.wheels', [$make['title']]) }}</a>
                     </td>						
                 </tr>						
             </tbody>

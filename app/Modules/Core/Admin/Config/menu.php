@@ -11,13 +11,13 @@ return [
         'children' => [
             [
                 'title' => 'Domains',
-                'route' => route('admin.core.domains.index'),
+                'route' => r('admin.core.domains.index'),
                 'icon' => 'fa-globe',
                 'permission' => 'core.domain.index',
             ],
             [
                 'title' => 'Pages',
-                'route' => route('admin.core.pages.index'),
+                'route' => r('admin.core.pages.index'),
                 'icon' => 'fa-folder',
                 'permission' => 'core.page.index',
             ],

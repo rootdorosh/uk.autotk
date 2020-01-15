@@ -8,7 +8,7 @@
     <div class="card-header">
         <h3 class="card-title float-sm-left">{{ __('core::domain.title.index') }}</h3>
         @if (allow('core.domain.store'))
-        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ route('admin.core.domains.create') }}">{{ __('app.add') }}</a>      
+        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ r('admin.core.domains.create') }}">{{ __('app.add') }}</a>      
         @endif
     </div>
     <div class="card-body">
@@ -22,7 +22,7 @@
 $(function () {
 
     var tableAgrid = $('#domains-grid').aGrid({
-        url: '{{ route("admin.core.domains.index") }}',
+        url: '{{ r("admin.core.domains.index") }}',
         permissions: {
             update: {{ allow('core.domain.update') ? true : false }},
             destroy: {{ allow('core.domain.destroy') ? true : false }},
@@ -68,7 +68,7 @@ $(function () {
             dir: 'asc'
         },
         rowActions: aGridExt.defaultRowActions({
-            baseUrl: '{{ route("admin.core.domains.index") }}'
+            baseUrl: '{{ r("admin.core.domains.index") }}'
         }),    
         theadPanelCols: {
             pager: 'col-sm-4',

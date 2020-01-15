@@ -10,7 +10,7 @@
     </div>    
     <div class="card-body">    
         @include('User.admin::role._form', [
-            'action' => route('admin.user.roles.update', [$role->id]),
+            'action' => r('admin.user.roles.update', [$role->id]),
         ])
     </div>    
 </div>    

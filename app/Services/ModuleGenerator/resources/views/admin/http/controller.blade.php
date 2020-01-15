@@ -65,7 +65,7 @@ class {{ $model['name'] }}Controller extends AdminController
     {
         ${{ Str::camel($model['name']) }} = $this->crudService->store($request->validated());
         
-        return redirect(route('admin.{{ Str::camel($moduleName) }}.{{ Str::camel($model['name_plural']) }}.index'))
+        return redirect(r('admin.{{ Str::camel($moduleName) }}.{{ Str::camel($model['name_plural']) }}.index'))
             ->with('success', __('{{ Str::camel($moduleName) }}::{{ Str::camel($model['name']) }}.success.created'));       
     }
 
@@ -90,7 +90,7 @@ class {{ $model['name'] }}Controller extends AdminController
     {
         ${{ Str::camel($model['name']) }} = $this->crudService->update(${{ Str::camel($model['name']) }}, $request->validated());
         
-        return redirect(route('admin.{{ Str::camel($moduleName) }}.{{ Str::camel($model['name_plural']) }}.index')) 
+        return redirect(r('admin.{{ Str::camel($moduleName) }}.{{ Str::camel($model['name_plural']) }}.index')) 
             ->with('success', __('{{ Str::camel($moduleName) }}::{{ Str::camel($model['name']) }}.success.updated'));       
     }
 

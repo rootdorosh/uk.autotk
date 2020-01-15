@@ -10,7 +10,7 @@
     </div>    
     <div class="card-body">    
         @include('Core.admin::page._form', [
-            'action' => route('admin.core.pages.store'),
+            'action' => r('admin.core.pages.store'),
         ])
     </div>    
 </div>    

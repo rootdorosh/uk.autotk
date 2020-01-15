@@ -67,7 +67,7 @@ class RoleController extends AdminController
     {
         $role = $this->crudService->store($request->validated());
         
-        return redirect(route('admin.user.roles.index'))
+        return redirect(r('admin.user.roles.index'))
             ->with('success', __('user::role.success.created'));       
     }
 
@@ -92,7 +92,7 @@ class RoleController extends AdminController
     {
         $role = $this->crudService->update($role, $request->validated());
         
-        return redirect(route('admin.user.roles.index')) 
+        return redirect(r('admin.user.roles.index')) 
             ->with('success', __('user::role.success.updated'));       
     }
 

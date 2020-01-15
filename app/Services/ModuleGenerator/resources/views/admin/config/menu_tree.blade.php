@@ -19,7 +19,7 @@ $data .= "{$tab2}'children' => [\n";
 foreach ($modelsData as $model){ if (!empty($model['skipMap']) && in_array('menu', $model['skipMap'])){continue;}
     $data .= "{$tab3}[\n";
     $data .= "{$tab4}'title' => '".$model['name_plural']."',\n";
-    $data .= "{$tab4}'route' => route('admin.".Str::kebab($moduleName).".".Str::kebab($model['name_plural']).".index'),\n";
+    $data .= "{$tab4}'route' => r('admin.".Str::kebab($moduleName).".".Str::kebab($model['name_plural']).".index'),\n";
     $data .= "{$tab4}'icon' => '".$model['menu']['icon']."',\n";
     $data .= "{$tab4}'permission' => '".Str::camel($moduleName) . '.'. Str::camel($model['name']).".index',\n";
     $data .= "{$tab3}],\n";

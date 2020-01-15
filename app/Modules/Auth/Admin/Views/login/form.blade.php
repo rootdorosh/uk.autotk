@@ -3,7 +3,7 @@
 @section('title',  __('auth::login_form.title'))
 
 @section('content')
-<form action="{{ route('admin.auth.login.submit') }}" method="post">
+<form action="{{ r('admin.auth.login.submit') }}" method="post">
     
     @csrf
     

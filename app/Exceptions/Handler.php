@@ -63,6 +63,6 @@ class Handler extends ExceptionHandler
     {
        return $request->expectsJson()
                     ? response()->json(['message' => $exception->getMessage()], 401)
-                    : redirect()->guest(route('admin.auth.login.form'));
+                    : redirect()->guest(r('admin.auth.login.form'));
     }
 }

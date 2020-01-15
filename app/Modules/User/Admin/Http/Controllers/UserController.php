@@ -79,7 +79,7 @@ class UserController extends AdminController
     {
         $user = $this->crudService->store($request->validated());
         
-        return redirect(route('admin.user.users.index'))
+        return redirect(r('admin.user.users.index'))
             ->with('success', __('user::user.success.created'));       
     }
 
@@ -104,7 +104,7 @@ class UserController extends AdminController
     {
         $user = $this->crudService->update($user, $request->validated());
         
-        return redirect(route('admin.user.users.index')) 
+        return redirect(r('admin.user.users.index')) 
             ->with('success', __('user::user.success.updated'));       
     }
 

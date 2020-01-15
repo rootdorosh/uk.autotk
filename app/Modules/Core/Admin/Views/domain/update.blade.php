@@ -10,7 +10,7 @@
     </div>    
     <div class="card-body">    
         @include('Core.admin::domain._form', [
-            'action' => route('admin.core.domains.update', [$domain->id]),
+            'action' => r('admin.core.domains.update', [$domain->id]),
         ])
     </div>    
 </div>    

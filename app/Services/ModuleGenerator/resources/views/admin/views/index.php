@@ -36,7 +36,7 @@ foreach ($fields as $key => $field) {
     <div class="card-header">
         <h3 class="card-title float-sm-left">{{ __('<?= Str::snake($moduleData['name'])?>::<?= Str::snake($model['name'])?>.title.index') }}</h3>
         @if (allow('<?= Str::camel($moduleName)?>.<?= Str::camel($model['name'])?>.store'))
-        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ route('admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.create') }}">{{ __('app.add') }}</a>      
+        <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ r('admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.create') }}">{{ __('app.add') }}</a>      
         @endif
     </div>
     <div class="card-body">
@@ -50,7 +50,7 @@ foreach ($fields as $key => $field) {
 $(function () {
 
     var tableAgrid = $('#<?= Str::kebab($model['name_plural'])?>-grid').aGrid({
-        url: '{{ route("admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.index") }}',
+        url: '{{ r("admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.index") }}',
         permissions: {
             update: {{ allow('<?= Str::camel($moduleName)?>.<?= Str::camel($model['name'])?>.update') ? true : false }},
             destroy: {{ allow('<?= Str::camel($moduleName)?>.<?= Str::camel($model['name'])?>.destroy') ? true : false }},
@@ -62,7 +62,7 @@ $(function () {
             dir: 'asc'
         },
         rowActions: aGridExt.defaultRowActions({
-            baseUrl: '{{ route("admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.index") }}'
+            baseUrl: '{{ r("admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.index") }}'
         }),    
         theadPanelCols: {
             pager: 'col-sm-4',
