@@ -1,5 +1,7 @@
 <?php
 
+return [];
+
 return [
     [
         'title' => 'Log',
