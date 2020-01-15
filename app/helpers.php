@@ -35,7 +35,7 @@ if (! function_exists('r')) {
     /*
      * @return string
      */
-    function r($name, $parameters = [], $absolute = true)
+    function r($name, $parameters = [], $absolute = false)
     {
         return route($name, $parameters, $absolute) . '/';
     }
