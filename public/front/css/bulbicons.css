@@ -1,0 +1,251 @@
+.ash:before {
+    content: url("/img/bulbicons/ash-tray-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.auto:before {
+    content: url("/img/bulbicons/automatic-transmission-indicator-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.backup:before {
+    content: url("/img/bulbicons/back-up-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.brake:before {
+    content: url("/img/bulbicons/brake-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.stop:before {
+    content: url("/img/bulbicons/center-high-mount-stop-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.clock:before {
+    content: url("/img/bulbicons/clock-light.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.corner:before {
+    content: url("/img/bulbicons/cornering-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.courtesy:before {
+    content: url("/img/bulbicons/courtesy-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.daytime:before {
+    content: url("/img/bulbicons/daytime-running-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.dome:before {
+    content: url("/img/bulbicons/dome-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.engine:before {
+    content: url("/img/bulbicons/engine-compartment-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.fogfront:before {
+    content: url("/img/bulbicons/fog-light-bulb-front.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.fogrear:before {
+    content: url("/img/bulbicons/fog-light-bulb-rear.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.glove:before {
+    content: url("/img/bulbicons/glove-box-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.highlow:before {
+    content: url("/img/bulbicons/headlight-bulb-high-beam-and-low-beam.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.high:before {
+    content: url("/img/bulbicons/headlight-bulb-high-beam.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.low:before {
+    content: url("/img/bulbicons/headlight-bulb-low-beam.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.ignit:before {
+    content: url("/img/bulbicons/ignition-light.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.instr:before {
+    content: url("/img/bulbicons/instrument-panel-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.inter:before {
+    content: url("/img/bulbicons/interior-door-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.lic:before {
+    content: url("/img/bulbicons/license-plate-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.map:before {
+    content: url("/img/bulbicons/map-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.parkbr:before {
+    content: url("/img/bulbicons/parking-brake-indicator-light.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.park:before {
+    content: url("/img/bulbicons/parking-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.radiodial:before {
+    content: url("/img/bulbicons/radio-dial-light.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.radiodis:before {
+    content: url("/img/bulbicons/radio-display-light.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.seat:before {
+    content: url("/img/bulbicons/seat-belt-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.sidefront:before {
+    content: url("/img/bulbicons/side-marker-light-bulb-front.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.siderear:before {
+    content: url("/img/bulbicons/side-marker-light-bulb-rear.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.step:before {
+    content: url("/img/bulbicons/stepwell-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.tail:before {
+    content: url("/img/bulbicons/tail-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.trunk:before {
+    content: url("/img/bulbicons/trunk-or-cargo-area-light.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.turnind:before {
+    content: url("/img/bulbicons/turn-signal-indicator-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.turnfront:before {
+    content: url("/img/bulbicons/turn-signal-light-bulb-front.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.turnrear:before {
+    content: url("/img/bulbicons/turn-signal-light-bulb-rear.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
+
+.vanity:before {
+    content: url("/img/bulbicons/vanity-mirror-light-bulb.svg");
+    float: left;
+    width: 30px;
+    margin: 0 15px 0 0;
+}
