@@ -35,7 +35,7 @@ foreach ($fields as $key => $field) {
 <div class="card card-info card-outline">
     <div class="card-header">
         <h3 class="card-title float-sm-left">{{ __('<?= Str::snake($moduleData['name'])?>::<?= Str::snake($model['name'])?>.title.index') }}</h3>
-        @if (allow('<?= Str::camel($moduleName)?>.<?= Str::camel($model['name'])?>.store'))
+        @if (allow('<?= strtolower($moduleName)?>.<?= strtolower($model['name'])?>.store'))
         <a class="btn btn-success btn-xs card-title float-sm-right" href="{{ r('admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.create') }}">{{ __('app.add') }}</a>      
         @endif
     </div>
@@ -52,8 +52,8 @@ $(function () {
     var tableAgrid = $('#<?= Str::kebab($model['name_plural'])?>-grid').aGrid({
         url: '{{ r("admin.<?= Str::kebab($moduleData['name'])?>.<?= Str::kebab($model['name_plural'])?>.index") }}',
         permissions: {
-            update: {{ allow('<?= Str::camel($moduleName)?>.<?= Str::camel($model['name'])?>.update') ? true : false }},
-            destroy: {{ allow('<?= Str::camel($moduleName)?>.<?= Str::camel($model['name'])?>.destroy') ? true : false }},
+            update: {{ allow('<?= strtolower($moduleName)?>.<?= strtolower($model['name'])?>.update') ? true : false }},
+            destroy: {{ allow('<?= strtolower($moduleName)?>.<?= strtolower($model['name'])?>.destroy') ? true : false }},
         },
         columns: [
 <?= $columns?>          ],

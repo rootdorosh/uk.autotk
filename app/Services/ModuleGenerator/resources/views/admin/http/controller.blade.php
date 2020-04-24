@@ -65,8 +65,8 @@ class {{ $model['name'] }}Controller extends AdminController
     {
         ${{ Str::camel($model['name']) }} = $this->crudService->store($request->validated());
         
-        return redirect(r('admin.{{ Str::camel($moduleName) }}.{{ Str::camel($model['name_plural']) }}.index'))
-            ->with('success', __('{{ Str::camel($moduleName) }}::{{ Str::camel($model['name']) }}.success.created'));       
+        return redirect(r('admin.{{ Str::kebab($moduleName) }}.{{ Str::kebab($model['name_plural']) }}.index'))
+            ->with('success', __('{{ Str::snake($moduleName) }}::{{ Str::snake($model['name']) }}.success.created'));       
     }
 
     /**
@@ -90,8 +90,8 @@ class {{ $model['name'] }}Controller extends AdminController
     {
         ${{ Str::camel($model['name']) }} = $this->crudService->update(${{ Str::camel($model['name']) }}, $request->validated());
         
-        return redirect(r('admin.{{ Str::camel($moduleName) }}.{{ Str::camel($model['name_plural']) }}.index')) 
-            ->with('success', __('{{ Str::camel($moduleName) }}::{{ Str::camel($model['name']) }}.success.updated'));       
+        return redirect(r('admin.{{ Str::kebab($moduleName) }}.{{ Str::kebab($model['name_plural']) }}.index')) 
+            ->with('success', __('{{ Str::snake($moduleName) }}::{{ Str::snake($model['name']) }}.success.updated'));       
     }
 
     /**

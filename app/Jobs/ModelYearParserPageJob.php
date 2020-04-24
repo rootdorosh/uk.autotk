@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Services\Xml\Service as FeedService;
 use HeadlessChromium\BrowserFactory;
 use App\Services\Curl;
+use Exception;
 
 class ModelYearParserPageJob implements ShouldQueue
 {
@@ -43,26 +44,34 @@ class ModelYearParserPageJob implements ShouldQueue
         
 			$yearContent = Curl::getPage($this->params['url']);
 			preg_match( "/sRwd\=\'\/data\/js\/(.*?)\/'/", $yearContent, $matchCode);
+			unset($yearContent);
 			if (!isset($matchCode[1])) {
 				return;
 			}
+			
+			
 			$code = Curl::getPage('https://www.wheel-size.com/data/js/' . $matchCode[1] . '/');
-			$html = \phpQuery::newDocument(Curl::getPage($this->params['url']));
-			$body = $html->find('#vehicle-market-data')->html();
+			unset($matchCode);
+			
+			$htmlPage= \phpQuery::newDocument(Curl::getPage($this->params['url']));
+			$body = $htmlPage->find('#vehicle-market-data')->html();
+			unset($htmlPage);
+			
 			$file = "/parser/". $this->params['model_year_id'] .".html";
 			file_put_contents(public_path() . $file, (string)view('parser.year', compact('code', 'body')));
+			unset($code, $body);
 
-			$browserFactory = new BrowserFactory();
-			$browser = $browserFactory->createBrowser();
-			$page = $browser->createPage();
+			$page = ((new BrowserFactory())->createBrowser())->createPage();
 			$page->navigate('http://uk.autotk.loc' . $file)->waitForNavigation(\HeadlessChromium\Page::LOAD);
-			$evaluation = $page->evaluate('document.documentElement.innerHTML');
-			$content = self::clean($evaluation->getReturnValue());
-			$html = \phpQuery::newDocument('<html>' . $content . '</html>');
-
-			$content = str_replace(['â€“', 'Â'], '', $html->html());
+		
+			$content = str_replace(['â€“', 'Â'], '', (\phpQuery::newDocument('<html>' . 
+				self::clean(($page->evaluate('document.documentElement.innerHTML'))->getReturnValue()) .
+				'</html>'))->html()
+			);
+			unset($page);
 			file_put_contents($fileOk, $content);
-		}
+			unset($content);
+        }
     }
   
     public static function clean($str)
@@ -70,5 +79,9 @@ class ModelYearParserPageJob implements ShouldQueue
         $str = trim($str);
         return str_replace(["\n", "\t", "\r"], '', $str);
     }
-    
+		
+	public function failed(Exception $exception) 
+	{
+		info($exception);
+	}		
 }

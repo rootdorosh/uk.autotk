@@ -4,6 +4,10 @@ foreach ($model['fields'] as $key => $item) {
     $field=$item['field'];
     if ($field['type'] === 'text') {
         $fields[] = "\t\t" . '$form->text(\''.$key.'\');';
+    } elseif ($field['type'] === 'datetime') {
+        $fields[] = "\t\t" . '$form->datetime(\''.$key.'\');';
+    } elseif ($field['type'] === 'image') {
+        $fields[] = "\t\t" . '$form->image(\''.$key.'\');';
     } elseif ($field['type'] === 'number') {
         $fields[] = "\t\t" . '$form->number(\''.$key.'\');';
     } elseif ($field['type'] === 'toggle') {
