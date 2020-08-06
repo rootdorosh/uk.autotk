@@ -71,6 +71,7 @@ class TrimWheelFetchService extends FetchService
                     LEFT JOIN auto_bolt_pattern AS bp ON y.bolt_pattern_id = bp.id
                     WHERE t.is_active AND y.is_active AND y.model_id = $modelId
                     ORDER BY front.rim_diameter
+					LIMIT 10
             ";
 
             $rows = DB::select($sql);
