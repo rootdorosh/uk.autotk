@@ -161,7 +161,6 @@ class WheelsController extends Controller
 
         $this->modelViewService->add($model['id']);
 
-        //$rimData = (new TrimWheelFetchService)->getGroupByRimDiameterByModelId($model['id']);
         $years = (new ModelYearFetchService)->getItemsByModelIdFromTrim($model['id']);
         $markets = count($years) ? (new MarketFetchService)->getItemsByModelIdAndYearFromTrim($model['id'], $years[0]) : [];
         $selectedMarketId = null;
@@ -184,8 +183,9 @@ class WheelsController extends Controller
         if ($selectedEnginesId) {
             $filteredTitle = implode(' ', [$make['title'], $model['title'], $years[0], $engines[$selectedEnginesId]]);
         }
-
-        $rimData = [];
+			
+		$rimData = (new TrimWheelFetchService)->getGroupByRimDiameterByModelId($model['id']);
+        	
         return view('front.wheels.model', compact(
             'make',
             'model',
