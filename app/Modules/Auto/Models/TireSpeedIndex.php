@@ -5,7 +5,7 @@ namespace App\Modules\Auto\Models;
 use App\Base\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
-class Wheel extends BaseModel
+class TireSpeedIndex extends BaseModel
 {
     use Cacheable;
 
@@ -14,7 +14,7 @@ class Wheel extends BaseModel
      *
      * @var string
      */
-    protected $table = 'auto_wheel';
+    protected $table = 'tire_speed_index';
 
     /**
      * @var  bool
@@ -27,13 +27,12 @@ class Wheel extends BaseModel
      * @var  array
      */
     public $fillable = [
-        'tire_width',
-        'aspect_ratio',
-        'construction',
-        'rim_diameter',
-        'load_index',
-        'speed_rating',
-        'rim_width',
-        'offset',
+        'code',
+        'mph',
+        'kmh',
+        'rank',
     ];
 }
+
+
+

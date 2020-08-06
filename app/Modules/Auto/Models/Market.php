@@ -2,31 +2,32 @@
 
 namespace App\Modules\Auto\Models;
 
+use App\Base\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Translatable\Translatable;
 
 class Market extends Model
-{   
-    use Translatable;
-    
+{
+    use Translatable, Cacheable;
+
     const EUDM = 3;
-    
+
     /**
      * The table name.
      *
      * @var string
      */
     protected $table = 'auto_market';
-    
+
     /**
      * @var  bool
      */
     public $timestamps = false;
-	    
+
     /**
      * @var  string
      */
-	public $translationForeignKey = 'market_id';	
+	public $translationForeignKey = 'market_id';
 
     /*
      * @var  array
@@ -40,10 +41,10 @@ class Market extends Model
      * @var  array
      */
     protected $with = ['translations'];
-    
+
     /**
      * The attributes that are mass assignable.
-     
+
      * @var  array
      */
     public $fillable = [

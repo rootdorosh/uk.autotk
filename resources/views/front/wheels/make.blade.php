@@ -4,52 +4,51 @@
 <div class="l-col1">
     <section class="times clearfix">
         <h2 class="section-name pb18">{!! $seo['h1'] !!}</h2>
-        
+
         @if (!empty($banners['horizontal1']))
         <div class="google_links f_left p_rel">
             {!! $banners['horizontal1'] !!}
         </div>
         @endif
-        
+
         @if (!empty($seo['header_text']))
         <div class="text_size">
             {!! $seo['header_text'] !!}
         </div>
         @endif
-        
+
     </section>
-    
+
     <section class="make">
         <h2 class="section-name_2">{{ t('make.models.list', [$make['title']]) }}</h2>
-        
+
             <ul class="make__vehicle">
-            @foreach ($models as $item)    
-            <?php /* {{ r('wheels.make.model', [$make['slug'], $item['slug']]) }} */ ?>
+            @foreach ($models as $item)
             <li>
                 @if (!empty($item['image']))
                 <div class="make__vehicle-image">
-                    <a title="{{ t('make.model.wheels', [$make['title'], $item['title']]) }}" 
-                       href="#">
-                        <img src="{{ $item['image'] }}" alt="{{ t('make.model.wheels', [$make['title'], $item['title']]) }}"> 
+                    <a title="{{ t('make.model.wheels', [$make['title'], $item['title']]) }}"
+                       href="{{ r('wheels.make.model', [$make['slug'], $item['slug']]) }}">
+                        <img src="{{ $item['image'] }}" alt="{{ t('make.model.wheels', [$make['title'], $item['title']]) }}">
                     </a>
                 </div>
                 @endif
                 <h3>
-                    <a title="{{ t('make.model.wheels', [$make['title'], $item['title']]) }}" 
-                       href="#">{{ t('make.model.wheels', [$make['title'], $item['title']]) }}</a>
+                    <a title="{{ t('make.model.wheels', [$make['title'], $item['title']]) }}"
+                       href="{{ r('wheels.make.model', [$make['slug'], $item['slug']]) }}">{{ t('make.model.wheels', [$make['title'], $item['title']]) }}</a>
                 </h3>
-                <ul class="make__vehicle-specs">		
+                <ul class="make__vehicle-specs">
                     <li>{{ t('count_years.models.by.year', [$item['count_years']]) }}, {{ t('count_wheel.wheel.sizes', [$item['count_wheel']]) }}</li>
                     <li>{{ t('the.latest.year.is.year.with.count_wheels.wheel.sets', [$item['last_year'], $item['last_year_count_wheel']]) }}</li>
                 </ul>
             </li>
             @endforeach
         </ul>
-        
+
         @if (!empty($banners['horizontal1']))
         <div class="banner-horizontal">
             {{ $banners['horizontal1'] }}
-        </div>	
+        </div>
         @endif
 
     </section>
@@ -67,16 +66,16 @@
     <section class="right-block">
         <h2 class="section-name_2">{{ t('make.specs.and.dimensions', [$make['title']]) }}</h2>
         <table class="right-block__specs-list">
-            <tbody>				
+            <tbody>
                 <tr>
                     <td>
                         <a class="rim" href="{{ r('wheels.make', [$make['slug']]) }}">{{ t('make.wheels', [$make['title']]) }}</a>
-                    </td>						
-                </tr>						
+                    </td>
+                </tr>
             </tbody>
         </table>
-    </section>	
-    
+    </section>
+
     @if (!empty($banners['vertical2']))
     <div class="banner-ver">
         {!! $banners['vertical2'] !!}

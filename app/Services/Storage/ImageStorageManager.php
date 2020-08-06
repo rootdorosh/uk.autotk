@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
  */
 class ImageStorageManager extends StorageManager
 {
+    const UPLOAD_PATH = '/uploads';
+
     /**
      * @return string
      */

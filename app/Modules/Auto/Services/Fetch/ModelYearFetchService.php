@@ -2,6 +2,9 @@
 
 namespace App\Modules\Auto\Services\Fetch;
 
+use App\Modules\Auto\Models\Generation;
+use App\Modules\Auto\Models\Market;
+use App\Modules\Auto\Models\Trim;
 use Illuminate\Support\Collection;
 use App\Modules\Auto\Models\Make;
 use App\Modules\Auto\Models\Model;
@@ -12,12 +15,13 @@ use App\Base\FetchService;
 use Cache;
 use FrontPage;
 use DB;
+use phpDocumentor\Reflection\DocBlock\Tags\Generic;
 
 /**
  * Class ModelYearFetchService
  */
 class ModelYearFetchService extends FetchService
-{    
+{
     /**
      * @return array
      */
@@ -29,7 +33,7 @@ class ModelYearFetchService extends FetchService
             (new Make)->tag,
             (new Model)->tag,
         ];
-        
+
         return Cache::tags($tags)->remember($key, self::EXP_MONTH, function() {
             $items = ModelYear::select([
                     DB::raw('DISTINCT auto_model_year.year AS year'),
@@ -46,15 +50,58 @@ class ModelYearFetchService extends FetchService
                 ->where('auto_model.is_active', 1)
                 ->orderBy('year', 'DESC')
                 ->get();
-            
+
             $data = [];
             foreach ($items as $item) {
                 $data[$item->year] = $item->year;
             }
-            
+
             return $data;
-        });        
-    } 
+        });
+    }
+
+    /**
+     * @param int $modelId
+     * @return array
+     */
+    public function getItemsByModelIdFromTrim(int $modelId): array
+    {
+        $key = $this->tag . __FUNCTION__ . $modelId;
+        $tags = [
+            (new Make)->tag,
+            (new Model)->tag,
+            (new ModelYear)->tag,
+            (new Market)->tag,
+            (new Generation)->tag,
+            (new Trim)->tag,
+        ];
+
+        return Cache::tags($tags)->remember($key, self::EXP_MONTH, function() use ($modelId) {
+            $sql = "SELECT
+                        DISTINCT y.year AS `year`
+                    FROM auto_trim AS t
+                    LEFT JOIN auto_model_year AS y ON t.model_year_id = y.id
+                    LEFT JOIN auto_generation AS g ON t.generation_id = g.id
+                    LEFT JOIN auto_market AS m ON t.market_id = m.id
+                    LEFT JOIN auto_engine AS e ON t.engine_id = e.id
+                    WHERE t.is_active AND
+                          g.is_active AND
+                          m.is_active AND
+                          y.is_active AND
+                          y.model_id = $modelId AND
+                          t.market_id IS NOT NULL
+                    ORDER BY y.year DESC
+            ";
+
+            $rows = DB::select($sql);
+            $data = [];
+            foreach ($rows as $row) {
+                $data[] = $row->year;
+            }
+
+            return $data;
+        });
+    }
 
     /**
      * @param int $year
@@ -68,7 +115,7 @@ class ModelYearFetchService extends FetchService
             (new Make)->tag,
             (new Model)->tag,
         ];
-        
+
         return Cache::tags($tags)->remember($key, self::EXP_MONTH, function() use ($year) {
             $items = ModelYear::select([
                     DB::raw('DISTINCT auto_make.id AS make_id'),
@@ -88,7 +135,7 @@ class ModelYearFetchService extends FetchService
                 ->where('auto_model_year.year', $year)
                 ->orderBy('make_title', 'ASC')
                 ->get();
-            
+
             $data = [];
             foreach ($items as $item) {
                 $data[] = [
@@ -97,11 +144,11 @@ class ModelYearFetchService extends FetchService
                     'title' => $item->make_title,
                 ];
             }
-            
+
             return $data;
-        });        
-    } 
- 
+        });
+    }
+
     /**
      * @param int $year
      * @param int $makeId
@@ -115,7 +162,7 @@ class ModelYearFetchService extends FetchService
             (new Make)->tag,
             (new Model)->tag,
         ];
-        
+
         return Cache::tags($tags)->remember($key, self::EXP_MONTH, function() use ($year, $makeId) {
             $items = ModelYear::select([
                     DB::raw('DISTINCT auto_model.id AS model_id'),
@@ -136,7 +183,7 @@ class ModelYearFetchService extends FetchService
                 ->where('auto_make.id', $makeId)
                 ->orderBy('model_title', 'ASC')
                 ->get();
-            
+
             $data = [];
             foreach ($items as $item) {
                 $data[] = [
@@ -145,11 +192,11 @@ class ModelYearFetchService extends FetchService
                     'title' => $item->model_title,
                 ];
             }
-            
+
             return $data;
-        });        
-    } 
- 
+        });
+    }
+
     /**
      * @param int $makeId
      * @return array|null
@@ -162,7 +209,7 @@ class ModelYearFetchService extends FetchService
             (new Model)->tag,
             (new ModelYear)->tag,
         ];
-        
+
         return Cache::tags($tags)->remember($key, self::EXP_MONTH, function() use ($makeId) {
             $item = ModelYear::select([
                     'auto_model.id AS model_id',
@@ -180,14 +227,14 @@ class ModelYearFetchService extends FetchService
                 ->where('auto_model.make_id', $makeId)
                 ->orderBy('year', 'ASC')
                 ->first();
-            
+
             $data = [];
             if ($item !== null) {
                 $data = $item->toArray();
             }
-            
+
             return $data;
-        });        
-    } 
- 
+        });
+    }
+
 }

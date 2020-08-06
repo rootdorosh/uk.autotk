@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class FetchService
 {
-    const EXP_HOUR = 60*60;
-    const EXP_DAY = 60*60*24;
-    const EXP_MONTH = 60*60*24*30;
-    const EXP_YEAR = 60*60*24*365;
-    
+    const EXP_HOUR = 1;//60*60;
+    const EXP_DAY = 1;//60*60*24;
+    const EXP_MONTH = 1;//60*60*24*30;
+    const EXP_YEAR = 1;//60*60*24*365;
+
     /*
      * @var string
      */
@@ -24,7 +24,7 @@ class FetchService
      * @var Model
      */
     protected $model;
-    
+
     /*
      * construct
      */
@@ -35,12 +35,12 @@ class FetchService
             ['Models', ''],
             static::class
         );
-        
+
         $this->model = new $modelNamespace;
-        
+
         $this->tag = $this->model->getTag();
     }
-    
+
     /*
      * @param Builder $queryBuilder
      * @return string
@@ -63,6 +63,6 @@ class FetchService
 
         return vsprintf($sql, $handledBindings);
     }
-    
+
 
 }
