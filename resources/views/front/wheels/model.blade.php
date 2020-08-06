@@ -106,8 +106,10 @@
     То что мы нагенерим - надо будет переводить для каждого языка, а значит надо еще сделать импорт текстов для каждого языка.
 
     -->
-
+	
+	
     <section class="make">
+			
         <h2 class="section-name_2">Wheels Specs FAQ</h2>
         <ul class="make__vehicle">
             <li>
@@ -248,7 +250,8 @@
 
         </ul>
     </section>
-
+	
+	<!--
     <section class="make">
         <h2 class="section-name_2">Tires Specs FAQ</h2>
         <ul class="make__vehicle">
@@ -387,7 +390,7 @@
 
         </ul>
     </section>
-
+	-->
 
 
 
@@ -402,9 +405,11 @@
 
 </div>
 <div class="l-col2">
-    <br>
+    
+	<br>
     <section class="right-block">
-        <h2 class="section-name_2">Toyota Camry specs</h2>
+        <!--
+		<h2 class="section-name_2">Toyota Camry specs</h2>
 
         <a href="https://autotk.com/toyota/camry/" title="Toyota Camry specs">
             <img src="./Toyota Camry Bolt Pattern, Wheel Size, Lug Pattern and Rim Specs_files/Toyota-Camry-2019(1).jpg">
@@ -419,6 +424,7 @@
             </tr>
             </tbody>
         </table>
+		-->
 
     </section>						<div class="banner-ver">
 
