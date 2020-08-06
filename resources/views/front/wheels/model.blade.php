@@ -107,7 +107,7 @@
 
     -->
 	
-	
+	<?php /*?>
     <section class="make">
 			
         <h2 class="section-name_2">Wheels Specs FAQ</h2>
@@ -250,8 +250,7 @@
 
         </ul>
     </section>
-	
-	<!--
+
     <section class="make">
         <h2 class="section-name_2">Tires Specs FAQ</h2>
         <ul class="make__vehicle">
@@ -390,7 +389,7 @@
 
         </ul>
     </section>
-	-->
+	<?php */?>
 
 
 
