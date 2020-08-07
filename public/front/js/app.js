@@ -68,24 +68,25 @@ $(document).ready(function() {
 
     $('body').on('change', '#wheels-market', function(e) {
         let self = $(this);
-        let url = window.currentUrl + '?action=engines&year=' + $('#wheels-model-year').val() + '&market_id=' + self.val();
+        let url = window.currentUrl + '?action=trims&year=' + $('#wheels-model-year').val() + '&market_id=' + self.val();
         $.getJSON(url, function(response) {
-            let select = $('#wheels-engine')
+            let select = $('#wheels-trim')
             select.find('option').remove()
             $.each(response.items, function(index, item){
                 select.append('<option value="' + item.id + '">' + item.title + '</option>');
             });
-            $('#wheels-engine').trigger('change');
+            $('#wheels-trim').trigger('change');
         });
     });
 
-    $('body').on('change', '#wheels-engine', function(e) {
+    $('body').on('change', '#wheels-trim', function(e) {
         let self = $(this);
-        let url = window.currentUrl + '?action=items&year=' + $('#wheels-model-year').val() + '&engine_id=' + self.val() + '&market_id=' + $('#wheels-market').val();
+        let url = window.currentUrl + '?action=items&year=' + $('#wheels-model-year').val() + '&trim_id=' + self.val() + '&market_id=' + $('#wheels-market').val();
         $.getJSON(url, function(response) {
-            $('#wheel-filter-result').html(response.html);
+            $('#wheel-filter-result').html(response.trim);
+            $('#wrap-rim').html(response.rim);
 
-            let title = $('.js-filter-result-title').data('title') + ' ' + $('#wheels-model-year option:selected').text() + ' ' + $('#wheels-engine option:selected').text();
+            let title = $('.js-filter-result-title').data('title') + ' ' + $('#wheels-model-year option:selected').text() + ' ' + $('#wheels-trim option:selected').text();
             $('.js-filter-result-title').text(title);
         });
     });

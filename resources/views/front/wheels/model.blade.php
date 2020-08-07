@@ -34,9 +34,9 @@
             </div>
             <div class="options__item">
                 <strong>{{ t('engine') }}</strong>
-                <select id="wheels-engine">
-                    @foreach($engines as $k => $v)
-                        <option value="{{ $k }}" {!! $k===$selectedEnginesId ? 'selected="selected"':'' !!}>{{ $v }}</option>
+                <select id="wheels-trim">
+                    @foreach($trims as $k => $v)
+                        <option value="{{ $k }}" {!! $k===$selectedTrimId ? 'selected="selected"':'' !!}>{{ $v }}</option>
                     @endforeach
                 </select>
             </div>
@@ -44,6 +44,7 @@
         </div>
     </div>
     <br>
+    @if ($filteredItem)
     <section class="make">
         <h2 class="js-filter-result-title section-name_2" data-title="{!! $make['title'] !!} {!! $model['title'] !!}">{!! $filteredTitle !!}</h2>
         <div id="wheel-filter-result">
@@ -51,48 +52,12 @@
         </div>
     </section>
     @endif
+    @endif
 
 
     @if (!empty($rimData))
-    <section class="make">
-        <a name="wheelsizes"></a><h2 class="section-name_2">Wheels Sizes</h2>
-
-        <ul class="years_list">
-            @foreach(array_keys($rimData) as $r)
-            <li class="years_list_item"><a href="#{{ strtolower($r) }}" class="btn years_list_link">{{ $r }}</a></li>
-            @endforeach
-        </ul>
-        <br>
-
-        @foreach($rimData as $r => $items)
-        <ul class="make__vehicle">
-            <a name="{{ strtolower($r) }}"></a><h3>{{ $r }}</h3>
-
-            @foreach($items as $item)
-                <?php $item = (array) $item?>
-                @if (empty($item['rear_rim_diameter']))
-                    @include('front.wheels._wheel', [
-                        'prefix_title' => '',
-                        'item' => $item,
-                        'key' => 'front',
-                    ])
-                @else
-                    @include('front.wheels._wheel', [
-                        'prefix_title' => t('front'),
-                        'item' => $item,
-                        'key' => 'front',
-                    ])
-                    @include('front.wheels._wheel', [
-                        'prefix_title' => t('rear'),
-                        'item' => $item,
-                        'key' => 'rear',
-                    ])
-                @endif
-            @endforeach
-
-        </ul>
-        @endforeach
-
+    <section class="make" id="wrap-rim">
+        @include('front.wheels._model_rims')
     </section>
     @endif
 
@@ -106,10 +71,10 @@
     То что мы нагенерим - надо будет переводить для каждого языка, а значит надо еще сделать импорт текстов для каждого языка.
 
     -->
-	
+
 	<?php /*?>
     <section class="make">
-			
+
         <h2 class="section-name_2">Wheels Specs FAQ</h2>
         <ul class="make__vehicle">
             <li>
@@ -404,7 +369,7 @@
 
 </div>
 <div class="l-col2">
-    
+
 	<br>
     <section class="right-block">
         <!--

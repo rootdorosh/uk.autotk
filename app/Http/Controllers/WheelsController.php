@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Modules\Auto\Services\Fetch\EngineFetchService;
-use App\Modules\Auto\Services\Fetch\MarketFetchService;
 use App\Modules\Auto\Services\Fetch\TrimFetchService;
-use App\Modules\Auto\Services\Fetch\TrimWheelFetchService;
-use Illuminate\Http\Request;
+use App\Modules\Auto\Services\Fetch\MarketFetchService;
 use App\Modules\Auto\Services\Fetch\ModelFetchService;
 use App\Modules\Auto\Services\Fetch\ModelYearFetchService;
 use App\Modules\Auto\Services\Fetch\MakeFetchService;
@@ -132,8 +129,8 @@ class WheelsController extends Controller
                         'selected' => $defaultSelectedMarketId == $k,
                     ];
                 }
-            } elseif ($action === 'engines') {
-                $items = (new EngineFetchService)->getItemsByModelIdAndYearAndMarketIdFromTrim($model['id'], request()->get('year'), request()->get('market_id'));
+            } elseif ($action === 'trims') {
+                $items = (new TrimFetchService)->getListByModelIdAndYearAndMarketId($model['id'], request()->get('year'), request()->get('market_id'));
                 foreach ($items as $k => $v) {
                     $response['items'][] = [
                         'id' => $k,
@@ -141,8 +138,13 @@ class WheelsController extends Controller
                     ];
                 }
             } elseif ($action === 'items') {
-                $filteredItems = (new TrimFetchService)->getItemsByModelIdAndYearAndMarketIdAndEngineIdFromTrim($model['id'], request()->get('year'), request()->get('market_id'), request()->get('engine_id'));
-                $response['html'] = view('front.wheels._model_filtered_items', compact('filteredItems', 'make', 'model'))->render();
+                $filteredItem = (new TrimFetchService)->getItemByIdForWheelModel(request()->get('trim_id'));
+                $rimData = $filteredItem
+                    ? (new TrimFetchService())->getGroupByRimDiameterByTrimId($filteredItem->id)
+                    : [];
+
+                $response['trim'] = view('front.wheels._model_filtered_items', compact('filteredItem', 'make', 'model'))->render();
+                $response['rim'] = view('front.wheels._model_rims', compact('rimData', 'make', 'model'))->render();
             }
 
             return response($response);
@@ -153,6 +155,12 @@ class WheelsController extends Controller
             'make' => $make['title'],
             'model' => $model['title'],
         ]);
+
+        FrontPage::setBreadcrumbs(
+            FrontPage::getSeoParamByPage('wheels.make', 'breadc_title', ['make' => $make['title']]),
+            FrontPage::getSeoParamByPage('wheels.make', 'breadc_label', ['make' => $make['title']]),
+            r('wheels.make', $make['slug'])
+        );
 
         FrontPage::setBreadcrumbs(
             FrontPage::getSeoParamByPage('wheels.make', 'breadc_title', ['make' => $make['title']]),
@@ -167,25 +175,22 @@ class WheelsController extends Controller
         if (count($markets)) {
             $selectedMarketId = isset($markets[3]) ? $defaultSelectedMarketId : array_keys($markets)[0];
         }
-        $engines = $selectedMarketId ? (new EngineFetchService())->getItemsByModelIdAndYearAndMarketIdFromTrim($model['id'], $years[0], $selectedMarketId) : [];
-        $selectedEnginesId = count($engines) ? array_keys($engines)[0] : null;
+        $trims = $selectedMarketId ? (new TrimFetchService)->getListByModelIdAndYearAndMarketId($model['id'], $years[0], $selectedMarketId) : [];
+        $selectedTrimId = count($trims) ? array_keys($trims)[0] : null;
 
-        $filteredItems = $selectedEnginesId
-            ? (new TrimFetchService)->getItemsByModelIdAndYearAndMarketIdAndEngineIdFromTrim(
-                $model['id'],
-                $years[0],
-                $selectedMarketId,
-                $selectedEnginesId
-            )
-            : [];
+        $filteredItem = $selectedTrimId
+            ? (new TrimFetchService)->getItemByIdForWheelModel($selectedTrimId)
+            : null;
 
         $filteredTitle = null;
-        if ($selectedEnginesId) {
-            $filteredTitle = implode(' ', [$make['title'], $model['title'], $years[0], $engines[$selectedEnginesId]]);
+        if ($selectedTrimId) {
+            $filteredTitle = implode(' ', [$make['title'], $model['title'], $years[0], $trims[$selectedTrimId]]);
         }
-			
-		$rimData = (new TrimWheelFetchService)->getGroupByRimDiameterByModelId($model['id']);
-        	
+
+		$rimData = $filteredItem
+                    ? (new TrimFetchService())->getGroupByRimDiameterByTrimId($filteredItem->id)
+                    : [];
+
         return view('front.wheels.model', compact(
             'make',
             'model',
@@ -194,9 +199,9 @@ class WheelsController extends Controller
             'years',
             'markets',
             'selectedMarketId',
-            'selectedEnginesId',
-            'engines',
-            'filteredItems',
+            'selectedTrimId',
+            'trims',
+            'filteredItem',
             'filteredTitle'
         ));
     }

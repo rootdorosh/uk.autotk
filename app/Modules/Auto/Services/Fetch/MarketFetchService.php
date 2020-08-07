@@ -36,7 +36,6 @@ class MarketFetchService extends FetchService
                     LEFT JOIN auto_generation AS g ON t.generation_id = g.id
                     LEFT JOIN auto_market AS m ON t.market_id = m.id
                     LEFT JOIN auto_market_lang AS ml ON ml.market_id = m.id AND ml.locale = '" . l() . "'
-                    LEFT JOIN auto_engine AS e ON t.engine_id = e.id
                     WHERE t.is_active AND
                           g.is_active AND
                           m.is_active AND

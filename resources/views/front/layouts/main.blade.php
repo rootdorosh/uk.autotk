@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>{{ FrontPage::getTitle() }}</title>
         <meta name="keywords" content="{{ FrontPage::getKeywords() }}" />
-        <meta name="description" content="{{ FrontPage::getDescription() }}" />	
+        <meta name="description" content="{{ FrontPage::getDescription() }}" />
 
         <meta name="viewport" content="initial-scale=1"/>
         <link rel="stylesheet" media="screen" href="/front/css/screen.css" >
@@ -15,7 +15,7 @@
     </head>
     <body class="l">
         <header>
-            <a href="/" class="logo" title="{{ FrontPage::getSeoParamByPage('home', 'title') }}">{{ FrontPage::getDomain()->alias }}</a>
+            <a href="{{ r('home') }}" class="logo" title="{{ FrontPage::getSeoParamByPage('home', 'title') }}">{{ FrontPage::getDomain()->alias }}</a>
         </header>
         <nav>
             <ul class="menu-list">
@@ -23,7 +23,7 @@
                 <!--<li><a href="{{ r('wheels') }}">{{ t('wheels') }}</a></li>-->
             </ul>
         </nav>
-        
+
         @if (!empty(FrontPage::getBreadcrumbs()))
         <ul class="breadcrumb">
 			<li>
@@ -42,7 +42,7 @@
             @endforeach
         </ul>
         @endif
-        
+
         <main>
             @yield('content')
         </main>
@@ -59,14 +59,14 @@
                         @endif
                     @endforeach
                 </div>
-                &copy 2014-{{ date('Y') }} {{ FrontPage::getDomain()->alias }} {{ t('all.rights.reserved') }} 
+                &copy 2014-{{ date('Y') }} {{ FrontPage::getDomain()->alias }} {{ t('all.rights.reserved') }}
                 <!--<a rel="nofollow" href="/about.html">About us</a>-->
             </section>
         </footer>
-        
+
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="/front/js/app.js"></script>
-        
+
     </body>
 </html>
 

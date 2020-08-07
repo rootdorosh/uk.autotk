@@ -83,7 +83,6 @@ class ModelYearFetchService extends FetchService
                     LEFT JOIN auto_model_year AS y ON t.model_year_id = y.id
                     LEFT JOIN auto_generation AS g ON t.generation_id = g.id
                     LEFT JOIN auto_market AS m ON t.market_id = m.id
-                    LEFT JOIN auto_engine AS e ON t.engine_id = e.id
                     WHERE t.is_active AND
                           g.is_active AND
                           m.is_active AND

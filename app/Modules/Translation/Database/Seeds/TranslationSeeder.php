@@ -66,6 +66,7 @@ class TranslationSeeder extends Seeder
             'generation' => 'Generation',
             'power' => 'Power',
             'tire_size' => 'tire size',
+            'wheels_sizes' => 'Wheels Sizes',
             '' => '',
         ];
 
