@@ -49,32 +49,32 @@ class FrontPage
      * @var string
      */
     private $title;
-    
+
     /*
      * @var string
      */
     private $h1;
-            
+
     /*
      * @var string
      */
     private $description;
-        
+
     /*
      * @var string
      */
     private $headerText;
-        
+
     /*
      * @var string
      */
     private $footerText;
-        
+
     /*
      * @var array
      */
     private $breadcrumbsParams = [];
-    
+
     /*
      * @return self
      */
@@ -89,10 +89,10 @@ class FrontPage
      */
     public function setDomain(Domain $domain): self
     {
-        $this->domain = $domain;        
+        $this->domain = $domain;
         return $this;
     }
-    
+
     /*
      * @return Domain
      * @throw Exception
@@ -105,13 +105,13 @@ class FrontPage
             if ($domain === null) {
                 throw new Exception("domain $alias not found !!!");
             }
-            
+
             $this->domain = $domain;
         }
-        
+
         return $this->domain;
     }
-    
+
     /*
      * @return array
      */
@@ -119,7 +119,7 @@ class FrontPage
     {
         return (new SeoFetchService)->getDomainUrlMap($this->getDomain());
     }
-    
+
     /*
      * @return Page
      * @param string $alias
@@ -132,10 +132,10 @@ class FrontPage
             if ($page === null) {
                 throw new Exception("Page $alias not found !!!");
             }
-            
+
             $this->page = $page;
         }
-        
+
         return $this->page;
     }
 
@@ -150,9 +150,9 @@ class FrontPage
         if ($this->seo === null) {
             $domain = $this->getDomain();
             $page = $this->getPage($alias);
-            
+
             $seo = (new SeoFetchService)->byDomainAndPage($domain, $page);
-            
+
             if (!empty($params)) {
                 foreach ((new Seo)->fillable as $attr) {
                     foreach ($params as $key => $val) {
@@ -160,10 +160,10 @@ class FrontPage
                     }
                 }
             }
-            
+
             $this->seo = $seo;
         }
-        
+
         return $this->seo;
     }
 
@@ -188,10 +188,10 @@ class FrontPage
         if ($this->banners === null) {
             $domain = $this->getDomain();
             $page = $this->getPage($alias);
-            
+
             $this->banners = (new BannerFetchService)->byDomainAndPage($domain, $page);
         }
-        
+
         return $this->banners;
     }
 
@@ -202,7 +202,7 @@ class FrontPage
     {
         App::setLocale($this->getDomain()->lang);
     }
-            
+
     /*
      * @return string|null
      */
@@ -210,7 +210,7 @@ class FrontPage
     {
         return !empty($this->title) ? $this->title : $this->seo->title;
     }
-    
+
     /*
      * @param string $value
      * @return self
@@ -220,7 +220,7 @@ class FrontPage
         $this->title = $value;
         return $this;
     }
-    
+
     /*
      * @return string|null
      */
@@ -228,7 +228,7 @@ class FrontPage
     {
         return !empty($this->keywords) ? $this->keywords : $this->seo->keywords;
     }
-    
+
     /*
      * @param string $value
      * @return self
@@ -238,7 +238,7 @@ class FrontPage
         $this->keywords = $value;
         return $this;
     }
-    
+
     /*
      * @return string|null
      */
@@ -246,7 +246,7 @@ class FrontPage
     {
         return !empty($this->description) ? $this->description : $this->seo->description;
     }
-    
+
     /*
      * @param string $value
      * @return self
@@ -256,7 +256,7 @@ class FrontPage
         $this->description = $value;
         return $this;
     }
-    
+
     /*
      * @return string|null
      */
@@ -264,7 +264,7 @@ class FrontPage
     {
         return !empty($this->headerText) ? $this->headerText : $this->seo->header_text;
     }
-    
+
     /*
      * @param string $value
      * @return self
@@ -274,7 +274,7 @@ class FrontPage
         $this->headerText = $value;
         return $this;
     }
-    
+
     /*
      * @return string|null
      */
@@ -282,7 +282,7 @@ class FrontPage
     {
         return !empty($this->footerText) ? $this->footerText : $this->seo->footer_text;
     }
-    
+
     /*
      * @param string $value
      * @return self
@@ -292,7 +292,7 @@ class FrontPage
         $this->footerText = $value;
         return $this;
     }
-    
+
 
     /*
      * @return string|null
@@ -301,7 +301,7 @@ class FrontPage
     {
         return !empty($this->h1) ? $this->h1 : $this->seo->seo_h1;
     }
-        
+
     /*
      * @param string|null $title
      * @param string|null $label
@@ -312,7 +312,7 @@ class FrontPage
     {
         $this->breadcrumbsParams[] = compact('url', 'title', 'label');
     }
-    
+
     /*
      * @return array
      */
@@ -335,7 +335,6 @@ class FrontPage
                 $url = str_replace('{' . $key . '}', $val, $url);
             }
         }
-        
-        return str_replace('//', '/', $url);
+        return str_replace('//', '/', $url . '/');
     }
 }
