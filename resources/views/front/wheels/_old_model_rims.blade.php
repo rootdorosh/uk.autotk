@@ -13,11 +13,24 @@
 
         @foreach($items as $item)
             <?php $item = (array) $item?>
+            @if (empty($item['rear_rim_diameter']))
                 @include('front.wheels._wheel', [
                     'prefix_title' => '',
                     'item' => $item,
                     'key' => 'front',
                 ])
+            @else
+                @include('front.wheels._wheel', [
+                    'prefix_title' => t('front'),
+                    'item' => $item,
+                    'key' => 'front',
+                ])
+                @include('front.wheels._wheel', [
+                    'prefix_title' => t('rear'),
+                    'item' => $item,
+                    'key' => 'rear',
+                ])
+            @endif
         @endforeach
 
     </ul>
