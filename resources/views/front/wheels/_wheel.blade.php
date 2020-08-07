@@ -19,7 +19,7 @@
         <ul>
             <!-- Ставим якоря на faq который идет ниже под таблицами параметров -->
             <!-- 16 - rim_diameter / 6,5 - rim_width / ET40 - offset -->
-            <li><a style="border-bottom: 1px dashed;" href="#rimsize">{{ t('rim_size') }}:</a> {{ $item[$key . '_rim_diameter'] }}x{{ $item[$key . '_rim_width'] }}J {{ $item[$key . '_offset'] }}</li>
+            <li><a style="border-bottom: 1px dashed;" href="#rimsize">{{ t('rim_size') }}:</a> {{ $item[$key . '_rim_diameter'] }}x{{ $item[$key . '_rim_width'] }}J ET{{ $item[$key . '_offset'] }}</li>
 
             <!-- 5x114.3 - bolt pattern из таблицы auto_bolt_pattern в формате: stud x pcd.
             Если pcd - целое число, то выводим как целое типа 120 а не 120.0 / дальше через слэш выводим pcd в дюймах по формуле pcd / 25.4 и выводим флоат число с максимум 2 цифры после точки -->
@@ -43,8 +43,18 @@
             @endif
 
             <!-- Lug nuts - wheel_fasteners из auto_trim -->
-            @if (!empty($item['wheel_fasteners']))
-            <li><a style="border-bottom: 1px dashed;" href="#wheelfasteners">{{ t('wheel_fasteners') }}:</a> {{ $item['wheel_fasteners'] }}</li>
+
+            <?php
+                $mapTrans = [
+                    'Lug bolts' => 'lug_bolts',
+                    'Lug nuts' => 'lug_nuts',
+                ];
+                $val = trim($item['wheel_fasteners']);
+                $wheelFasteners = $val !== '' && isset($mapTrans[$val]) ? t($mapTrans[$val]) : '';
+            ?>
+
+            @if ($wheelFasteners !== '')
+            <li><a style="border-bottom: 1px dashed;" href="#wheelfasteners">{{ t('wheel_fasteners') }}:</a> {{ $wheelFasteners }}</li>
             @endif
 
             <!-- 103 Nm - torque из auto_trim -->
@@ -56,7 +66,23 @@
             <li><a style="border-bottom: 1px dashed;" href="#rimwidth">{{ t('rim_width') }}:</a> {{ $item[$key . '_rim_width'] }}" ({{ $item[$key . '_rim_width'] * 25.4 }} mm)</li>
 
             <!-- 40 mm - offset из auto_wheel. В скобках выводим слово positive если значение более нуля, negative если меньше нуля и zero если значение ноль -->
-            <li><a style="border-bottom: 1px dashed;" href="#wheeloffset">{{ t('wheel_offset') }}:</a> 40 mm (positive)</li>
+            <?php ?>
+
+            <?php
+                $offsetTitle = '';
+
+                if ($item[$key . '_offset'] == '0') {
+                    $offsetTitle = t('zero');
+                } elseif ($item[$key . '_offset'] > 0) {
+                    $offsetTitle = t('positive');
+                } elseif ($item[$key . '_offset'] > 0) {
+                    $offsetTitle = t('negative');
+                }
+            ?>
+
+            @if ($offsetTitle !== '')
+            <li><a style="border-bottom: 1px dashed;" href="#wheeloffset">{{ t('wheel_offset') }}:</a> {{ $item[$key . '_offset'] }} mm ({{ $offsetTitle }})</li>
+            @endif
 
             <!-- Формула backspace
             Backspace = (rim_width + 1)/2 + (offset/25.4)
@@ -65,7 +91,7 @@
             <?php
                 $ddBackspace = round(($item[$key . '_rim_width'] + 1)/2 + ($item[$key . '_offset']/25.4), 2);
             ?>
-            <li><a style="border-bottom: 1px dashed;" href="#backspace">{{ t('backspace') }}:</a> {{ round($ddBackspace * 2.54, 2) }} mm / {{ $ddBackspace }}"</li>
+            <li><a style="border-bottom: 1px dashed;" href="#backspace">{{ t('backspace') }}:</a> {{ round($ddBackspace * 25.4) }} mm / {{ $ddBackspace }}"</li>
 
 
         </ul>
@@ -107,7 +133,7 @@
 
                 <!-- Формула:  1000 / Circumference -->
                 @if ($circumference > 0)
-                <li><a style="border-bottom: 1px dashed;" href="#revskm">{{ t('revs_km') }}:</a> {{ round(1000 / $circumference, 2) }}</li>
+                <li><a style="border-bottom: 1px dashed;" href="#revskm">{{ t('revs_km') }}:</a> {{ round((1000 / $circumference) * 1000) }}</li>
                 @endif
             @endif
 

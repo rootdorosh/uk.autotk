@@ -67,7 +67,11 @@ class TranslationSeeder extends Seeder
             'power' => 'Power',
             'tire_size' => 'tire size',
             'wheels_sizes' => 'Wheels Sizes',
-            '' => '',
+            'negative' => 'negative',
+            'positive' => 'positive',
+            'zero' => 'zero',
+            'lug_bolts' => 'Lug bolts',
+            'lug_nuts' => 'Lug nuts',
         ];
 
         foreach ($items as $slug => $value) {

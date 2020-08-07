@@ -150,7 +150,6 @@ class WheelsController extends Controller
             return response($response);
         }
 
-
         $seo = FrontPage::getSeo('wheels.make.model', [
             'make' => $make['title'],
             'model' => $model['title'],
