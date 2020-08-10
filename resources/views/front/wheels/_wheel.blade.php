@@ -120,11 +120,11 @@
             <li><a style="border-bottom: 1px dashed;" href="#tyrepressure">{{ t('tyre_pressure') }}:</a> {{ $item['front_pressure'] }} {{ t('bar') }} / {{ round($item['front_pressure'] * 14.5, 1)  }} {{ t('psi') }}</li>
             @endif
 
-            <!-- Wheel Diameter = rim_diameter * 25.4 + 2*sidewall_height
+            <!-- Wheel Diameter = rim_diameter * 25.4 + 2 * sidewall_height
             Например для 205/65R16: 16*25.4 + 2*113 = 673mm / Потом это число делим на 25.4 и получаем дюймы
             -->
             @if (!empty($item[$key . '_aspect_ratio']))
-                <?php $wheelDiameter = $item[$key . '_rim_diameter'] * 25.4 + 2* $item[$key . '_aspect_ratio'] ?>
+                <?php $wheelDiameter = $item[$key . '_rim_diameter'] * 25.4 + 2 * (($item[$key . '_tire_width'] * $item[$key . '_aspect_ratio']) / 100) ?>
                 <li><a style="border-bottom: 1px dashed;" href="#wheeldiameter">{{ t('wheel_diameter') }}:</a> {{ round($wheelDiameter) }} mm / {{ round($wheelDiameter / 25.4, 1) }}"</li>
 
                 <!-- Формула: Wheel Diameter * число Пи -->
