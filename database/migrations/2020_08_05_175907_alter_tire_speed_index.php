@@ -17,6 +17,7 @@ class AlterTireSpeedIndex extends Migration
      */
     public function up()
     {
+        /*
         Schema::table('tire_speed_index', function (Blueprint $table) {
             $table->unsignedInteger('mph')->nullable()->change();
             $table->unsignedInteger('kmh')->nullable()->change();
@@ -44,6 +45,9 @@ class AlterTireSpeedIndex extends Migration
         Schema::table('auto_wheel', function (Blueprint $table) {
             $table->dropColumn('speed_rating');
         });
+        *
+         *
+         */
     }
 
     /**

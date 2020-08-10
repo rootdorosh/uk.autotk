@@ -17,6 +17,7 @@ class AlterAutoWheelAddLoadIndexId extends Migration
      */
     public function up()
     {
+        /*
         Schema::table('tire_load_index', function (Blueprint $table) {
             $table->unsignedInteger('pounds')->nullable()->change();
             $table->unsignedInteger('kilograms')->nullable()->change();
@@ -44,6 +45,7 @@ class AlterAutoWheelAddLoadIndexId extends Migration
         Schema::table('auto_wheel', function (Blueprint $table) {
             $table->dropColumn('load_index');
         });
+        */
     }
 
     /**
