@@ -38,7 +38,7 @@ class MarketFetchService extends FetchService
                     LEFT JOIN auto_market_lang AS ml ON ml.market_id = m.id AND ml.locale = '" . l() . "'
                     WHERE t.is_active AND
                           g.is_active AND
-                          m.is_active AND
+                          (m.id IS NULL OR m.is_active ) AND
                           y.is_active AND
                           y.model_id = $modelId AND
                           y.year = $year
@@ -49,7 +49,8 @@ class MarketFetchService extends FetchService
             $rows = DB::select($sql);
             $data = [];
             foreach ($rows as $row) {
-                $data[$row->id] = $row->title;
+                $id = (int) $row->id;
+                $data[$id] = $id ? $row->title : t('global');
             }
 
             return $data;

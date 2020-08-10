@@ -144,17 +144,21 @@ class TrimFetchService extends FetchService
         ];
 
         return Cache::tags($tags)->remember($key, self::EXP_MONTH, function() use ($modelId, $year, $marketId) {
+
+            $marketWhere = !$marketId
+                ? 't.market_id IS NULL'
+                : "t.market_id = $marketId";
+
             $sql = "SELECT
                         t.id,
                         t.title AS title
                     FROM auto_trim AS t
                     LEFT JOIN auto_model_year AS y ON t.model_year_id = y.id
                     LEFT JOIN auto_generation AS g ON t.generation_id = g.id
-                    LEFT JOIN auto_market AS m ON t.market_id = m.id
                     WHERE t.is_active AND
                           g.is_active AND
                           y.is_active AND
-                          m.id = $marketId AND
+                          $marketWhere AND
                           y.model_id = $modelId AND
                           y.year = $year
                     ORDER BY t.title DESC

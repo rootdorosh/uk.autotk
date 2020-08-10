@@ -85,10 +85,9 @@ class ModelYearFetchService extends FetchService
                     LEFT JOIN auto_market AS m ON t.market_id = m.id
                     WHERE t.is_active AND
                           g.is_active AND
-                          m.is_active AND
+                          (m.id IS NULL OR m.is_active) AND
                           y.is_active AND
-                          y.model_id = $modelId AND
-                          t.market_id IS NOT NULL
+                          y.model_id = $modelId
                     ORDER BY y.year DESC
             ";
 

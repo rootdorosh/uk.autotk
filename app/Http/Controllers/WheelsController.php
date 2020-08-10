@@ -174,7 +174,8 @@ class WheelsController extends Controller
         if (count($markets)) {
             $selectedMarketId = isset($markets[3]) ? $defaultSelectedMarketId : array_keys($markets)[0];
         }
-        $trims = $selectedMarketId ? (new TrimFetchService)->getListByModelIdAndYearAndMarketId($model['id'], $years[0], $selectedMarketId) : [];
+
+        $trims = count($markets) ? (new TrimFetchService)->getListByModelIdAndYearAndMarketId($model['id'], $years[0], $selectedMarketId) : [];
         $selectedTrimId = count($trims) ? array_keys($trims)[0] : null;
 
         $filteredItem = $selectedTrimId

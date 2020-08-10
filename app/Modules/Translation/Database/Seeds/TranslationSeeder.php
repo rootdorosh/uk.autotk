@@ -72,6 +72,9 @@ class TranslationSeeder extends Seeder
             'zero' => 'zero',
             'lug_bolts' => 'Lug bolts',
             'lug_nuts' => 'Lug nuts',
+            'global' => 'Global',
+            '' => '',
+            '' => '',
         ];
 
         foreach ($items as $slug => $value) {
