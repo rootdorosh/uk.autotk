@@ -28,8 +28,13 @@
                 $ddPcd = round($item['bolt_pattern_pcd'] / 25.4, 2);
                 $ddPcd = rtrim($ddPcd, '0');
                 $ddPcd = rtrim($ddPcd, '.0');
+
+                $bpPcd = $item['bolt_pattern_pcd'];
+                if (\Illuminate\Support\Str::afterLast($item['bolt_pattern_pcd'], '.') == '0') {
+                    $bpPcd = str_replace('.0', '', $bpPcd);
+                }
             ?>
-            <li><a style="border-bottom: 1px dashed;" href="#boltpattern">{{ t('bolt_pattern') }}:</a> {{ $item['bolt_pattern_stud'] }}x{{ rtrim($item['bolt_pattern_pcd'], '.0') }} / {{ $item['bolt_pattern_stud'] }}x{{ $ddPcd }}"</li>
+            <li><a style="border-bottom: 1px dashed;" href="#boltpattern">{{ t('bolt_pattern') }}:</a> {{ $item['bolt_pattern_stud'] }}x{{ $bpPcd }} / {{ $item['bolt_pattern_stud'] }}x{{ $ddPcd }}"</li>
             @endif
 
             <!-- 60.1 mm - center_bore из auto_trim -->
