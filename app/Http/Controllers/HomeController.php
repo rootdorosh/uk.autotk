@@ -15,34 +15,34 @@ class HomeController extends Controller
      * @var MakeFetchService
      */
     private $makeFetchService;
-    
+
     /*
      * @var ModelFetchService
      */
     private $modelFetchService;
-    
+
     /*
      * @var ModelYearFetchService
      */
     private $modelYearFetchService;
-    
+
     /*
      * @var ModelViewService
      */
     private $modelViewService;
-    
+
     /*
      * HomeController constructor
-     * 
+     *
      * @param MakeFetchService $makeFetchService
      * @param ModelFetchService $modelFetchService
      * @param ModelYearFetchService $modelYearFetchService
      * @param ModelViewService $modelViewService
      */
     public function __construct(
-        MakeFetchService $makeFetchService, 
-        ModelFetchService $modelFetchService, 
-        ModelYearFetchService $modelYearFetchService, 
+        MakeFetchService $makeFetchService,
+        ModelFetchService $modelFetchService,
+        ModelYearFetchService $modelYearFetchService,
         ModelViewService $modelViewService
     )
     {
@@ -62,9 +62,7 @@ class HomeController extends Controller
         $makes = $this->makeFetchService->getData();
         $mostVisitedModels = $this->modelFetchService->mostVisited();
         $years = $this->modelYearFetchService->getListYears();
-        $makes = $this->modelYearFetchService->getListMakesByYear(2020);
-        $models = $this->modelYearFetchService->getListModelsByYearAndMakeId(2020, 107);
-        
+      
         return view('front.home.index', compact(
             'seo',
             'banners',
