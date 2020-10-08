@@ -62,7 +62,7 @@ class HomeController extends Controller
         $makes = $this->makeFetchService->getData();
         $mostVisitedModels = $this->modelFetchService->mostVisited();
         $years = $this->modelYearFetchService->getListYears();
-      
+
         return view('front.home.index', compact(
             'seo',
             'banners',

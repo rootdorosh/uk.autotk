@@ -335,6 +335,8 @@ class FrontPage
                 $url = str_replace('{' . $key . '}', $val, $url);
             }
         }
+        $url .= '/';
+
         return str_replace('//', '/', $url);
     }
 }
