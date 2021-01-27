@@ -63,7 +63,7 @@
 
 
     <div class="banner-ver">
-   {!! $seo->footer_text !!}
+
     </div>
 
 
