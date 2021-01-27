@@ -53,14 +53,14 @@
                     <h4>{{ t('autotk.internacional') }}</h4>
                     @foreach ((new App\Modules\Core\Services\Fetch\DomainFetchService)->getData() as $domain)
                         @if (FrontPage::getDomain()->id !== $domain->id)
-                            <a title="{{ $domain->title }}" href="//{{ FrontPage::getCurrentUrlByDomain($domain)}}">
+                            <a title="{{ $domain->title }}" href="https://{{ FrontPage::getCurrentUrlByDomain($domain)}}">
                                 <img class="flag-icon" src="/front/img/flags/{{ $domain->code }}.png">
                             </a>
                         @endif
                     @endforeach
                 </div>
                 &copy 2014-{{ date('Y') }} {{ FrontPage::getDomain()->alias }} {{ t('all.rights.reserved') }}
-                <!--<a rel="nofollow" href="/about.html">About us</a>-->
+               
             </section>
         </footer>
 
