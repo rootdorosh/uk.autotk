@@ -12,6 +12,15 @@
         <link rel="stylesheet" href="/front/css/bulbicons.css" />
         <link rel="stylesheet" href="/front/css/app.css" />
         <!--[if IE]><script src="/js/html5shiv.js"></script><![endif]-->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YPYEQQ0PS"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-4YPYEQQ0PS');
+		</script>
     </head>
     <body class="l">
         <header>
