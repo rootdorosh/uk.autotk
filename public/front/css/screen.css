@@ -22,7 +22,7 @@ table { border-spacing: 0; border-collapse: collapse; width: 100%; }
 
 html { font-size: 62.5%; }
 
-body { font-family: 'Roboto', Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #4d4d4d; }
+body { font-family: 'Roboto', Arial, sans-serif; font-size: 17px; line-height: 1.7; color: #4d4d4d; }
 body a { color: #2fa4e7; text-decoration:none;}
 body a:hover { color: #000; }
 

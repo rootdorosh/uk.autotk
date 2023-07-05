@@ -4,14 +4,6 @@
 <div class="l-col1" style="height: auto !important;">
     <h1 class="section-name_2">{{ $seo->h1 }}</h1>
 
-
-    <section class="times clearfix">
-        <div class="google_links f_left p_rel" style="height: auto !important;"></div>
-        <div class="text_size">
-            {!! $seo->header_text !!}
-        </div>
-    </section>
-
     @if (count($years))
     <div class="options">
         <h2>{{ t('select_the_year') }}</h2>
@@ -67,7 +59,12 @@
     </div>
 
 
-
+    <section class="times clearfix">
+        <div class="google_links f_left p_rel" style="height: auto !important;"></div>
+        <div class="text_size">
+            {!! $seo->header_text !!}
+        </div>
+    </section>
 
 </div>
 <div class="l-col2">

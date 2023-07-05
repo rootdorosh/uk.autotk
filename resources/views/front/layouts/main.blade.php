@@ -7,7 +7,7 @@
         <meta name="description" content="{{ FrontPage::getDescription() }}" />
 
         <meta name="viewport" content="initial-scale=1"/>
-        <link rel="stylesheet" media="screen" href="/front/css/screen.css" >
+        <link rel="stylesheet" media="screen" href="/front/css/screen.css?v=001" >
         <link rel="stylesheet" href="/front/css/responsive.css" />
         <link rel="stylesheet" href="/front/css/bulbicons.css" />
         <link rel="stylesheet" href="/front/css/app.css" />
